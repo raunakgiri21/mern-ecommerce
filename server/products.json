@@ -1,0 +1,142 @@
+[
+    {
+      "name": "Plain Dosa",
+      "description": "Tastty description for all",
+      "price": 60,
+      "category": "63f0c0bfdce13d0154c64b63",
+      "quantity": 200
+    },
+    {
+      "name": "Masala Dosa",
+      "description": "Tastty description for all",
+      "price": 90,
+      "category": "63f0c0bfdce13d0154c64b63",
+      "quantity": 190
+    },
+    {
+      "name": "Idli Sambar",
+      "description": "Tastty description for all",
+      "price": 50,
+      "category": "63f0c0bfdce13d0154c64b63",
+      "quantity": 180
+    },
+    {
+      "name": "Upma",
+      "description": "Tastty description for all",
+      "price": 65,
+      "category": "63f0c0bfdce13d0154c64b63",
+      "quantity": 155
+    },
+    {
+      "name": "Chole Bhature",
+      "description": "Tastty description for all",
+      "price": 40,
+      "category": "63f0c11fdce13d0154c64b6b",
+      "quantity": 250
+    },
+    {
+      "name": "tandoori Chicken",
+      "description": "Tastty description for all",
+      "price": 100,
+      "category": "63f0c11fdce13d0154c64b6b",
+      "quantity": 150
+    },
+    {
+      "name": "Paneer Tikka",
+      "description": "Tastty description for all",
+      "price": 50,
+      "category": "63f0c11fdce13d0154c64b6b",
+      "quantity": 210
+    },
+    {
+      "name": "Pav Bhaji",
+      "description": "Tastty description for all",
+      "price": 35,
+      "category": "63f0c11fdce13d0154c64b6b",
+      "quantity": 260
+    },
+    {
+      "name": "Chicken Momo",
+      "description": "Tastty description for all",
+      "price": 70,
+      "category": "63f0c12ddce13d0154c64b6f",
+      "quantity": 220
+    },
+    {
+      "name": "Pork Momo",
+      "description": "Tastty description for all",
+      "price": 80,
+      "category": "63f0c12ddce13d0154c64b6f",
+      "quantity": 210
+    },
+    {
+      "name": "Veg Momo",
+      "description": "Tastty description for all",
+      "price": 60,
+      "category": "63f0c12ddce13d0154c64b6f",
+      "quantity": 180
+    },
+    {
+      "name": "Chicken Chowmin",
+      "description": "Tastty description for all",
+      "price": 80,
+      "category": "63f0c12ddce13d0154c64b6f",
+      "quantity": 200
+    },
+    {
+      "name": "Pizza",
+      "description": "Tastty description for all",
+      "price": 140,
+      "category": "63f0c141dce13d0154c64b73",
+      "quantity": 150
+    },
+    {
+      "name": "Burger",
+      "description": "Tastty description for all",
+      "price": 100,
+      "category": "63f0c141dce13d0154c64b73",
+      "quantity": 189
+    },
+    {
+      "name": "Pasta",
+      "description": "Tastty description for all",
+      "price": 70,
+      "category": "63f0c141dce13d0154c64b73",
+      "quantity": 150
+    },
+    {
+      "name": "Sandwich",
+      "description": "Tastty description for all",
+      "price": 60,
+      "category": "63f0c141dce13d0154c64b73",
+      "quantity": 160
+    },
+    {
+      "name": "Coke",
+      "description": "Tastty description for all",
+      "price": 45,
+      "category": "63f0c151dce13d0154c64b77",
+      "quantity": 160
+    },
+    {
+      "name": "Pepsi",
+      "description": "Tastty description for all",
+      "price": 45,
+      "category": "63f0c151dce13d0154c64b77",
+      "quantity": 150
+    },
+    {
+      "name": "Coffee",
+      "description": "Tastty description for all",
+      "price": 40,
+      "category": "63f0c151dce13d0154c64b77",
+      "quantity": 180
+    },
+    {
+      "name": "Lemon Tea",
+      "description": "Tastty description for all",
+      "price": 30,
+      "category": "63f0c151dce13d0154c64b77",
+      "quantity": 180
+    }
+  ]
