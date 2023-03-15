@@ -1,8 +1,14 @@
 body{
   background-color: #d5e0e8
 }
+.nav-link {
+  color: #1284b4;
+  font-size: large;
+}
 .active {
-  text-decoration: underline;
+  opacity: 100%;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .pointer {

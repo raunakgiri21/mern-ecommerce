@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../context/auth'
 import { useNavigate } from 'react-router-dom'
+import FoodStrap from '../../assets/images/FOODSTRAP.png'
 import React from 'react'
 
 const Menu = () => {
@@ -15,12 +16,13 @@ const Menu = () => {
     }
 
     const loginRegisterHtml = !auth.user ? 
-    <><li className="nav-item">
+    <div className='d-flex flex-row'>
+    <li className="nav-item">
         <NavLink className="nav-link" to="/login">Login</NavLink>
     </li>
     <li className="nav-item">
         <NavLink className="nav-link" to="/register">Register</NavLink>
-    </li></>
+    </li></div>
     :
     (
         <div className='dropdown'>
@@ -43,12 +45,14 @@ const Menu = () => {
     );
 
     return(
-        <ul className="nav d-flex justify-content-between shadow-sm">
-        <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
-        </li>
-        {loginRegisterHtml}
-        </ul>
+        <div>
+            <ul className="nav d-flex justify-content-between align-items-center shadow-sm" style={{height: '60px',paddingRight: '5vw',paddingLeft: '5vw'}}>
+                <li className="nav-item">
+                    <NavLink className="nav-link" aria-current="page" to="/"><img src={FoodStrap}/></NavLink>
+                </li>
+                {loginRegisterHtml}
+            </ul>
+        </div>
     )
 }
 
