@@ -5,7 +5,7 @@ const createCategory = async(req,res) => {
     try {
         const body = req.body;
         const { name } = body;
-        if(!name.trim()) {
+        if(!name || !name.trim()) {
             return res.status(400).json({error: "Name cannot be empty!"});
         }
         const existingCategory = await Category.findOne({ name });

@@ -36,8 +36,18 @@ const productSchema = new mongoose.Schema({
         default: true,
     },
     image: {
-        data: Buffer,
-        contentType: String,
+        filename: {
+            type: String,
+            required: true,
+        },
+        contentType: {
+            type: String,
+            required: true,
+        },
+        imageBase64: {
+            type: String,
+            required: true,
+        }
     },
 
 },{timestamps: true}) 

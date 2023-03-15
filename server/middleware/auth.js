@@ -3,8 +3,10 @@ const User = require('../models/user')
 
 const authenticationMiddleware = async (req,res,next) => {
     const authHeader = req.headers.authorization;
+    console.log(authHeader)
     if(!authHeader || !authHeader.startsWith('Bearer ')){
-        return res.status(400).json({error: "No Token Provided!"})
+        console.log("Caught error in authmiddleware")
+        return res.status(401).json({error: "No Token Provided!"})
     }
     const token = authHeader.split(' ')[1];
     try {
@@ -13,6 +15,7 @@ const authenticationMiddleware = async (req,res,next) => {
         req.user = {_id};
         next();
     } catch (error) {
+        console.log("auth error")
         res.status(400).json(error)
     }
 }
