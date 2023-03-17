@@ -28,6 +28,12 @@ body{
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
   cursor: pointer;
 }
+.btn-order {
+  background-color: #2f94b4cf;
+}
+.btn-order:hover {
+  background-color: #2282a0cf;
+}
 
 .ant-checkbox-wrapper:first-of-type {
   margin-left: 8px;
