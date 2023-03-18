@@ -17,7 +17,7 @@ const PrivateRoute = () => {
         const authCheck = async () => {
             try {
                 // console.log("[Private Router] useEffect",auth?.token)
-                const {data} = await axios.get(`/users/auth-check`)
+                const {data} = await axios.get(`/auth/auth-check`)
                 if(data?.ok) {
                     setOk(true);
                 }

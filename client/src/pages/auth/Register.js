@@ -31,7 +31,7 @@ const Register = () => {
     const submitHandler = async(e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.post(`/users/register`,{name,email,password});
+            const {data} = await axios.post(`/auth/register`,{name,email,password});
             console.log(data)
             if(data?.error){
                 toast.error(data.error)

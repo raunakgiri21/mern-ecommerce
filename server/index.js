@@ -5,7 +5,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 // import routes
-const users = require('./routes/auth');
+const auth = require('./routes/auth');
+// const user = require('./routes/user');
 const category = require('./routes/category')
 const product = require('./routes/product')
 
@@ -23,7 +24,7 @@ app.get('/',(req,res)=> {
 })
 
 // use routes
-app.use('/api/v1/users',users)
+app.use('/api/v1/auth',auth)
 app.use('/api/v1/category',category)
 app.use('/api/v1/product',product)
 

@@ -17,7 +17,7 @@ const AdminRoute = () => {
         const adminCheck = async () => {
             try {
                 // console.log("[Admin Router] useEffect",auth?.token)
-                const {data} = await axios.get(`/users/admin-check`)
+                const {data} = await axios.get(`/auth/admin-check`)
                 if(data?.ok) {
                     setOk(true);
                 }

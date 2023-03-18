@@ -27,7 +27,7 @@ const Login = () => {
     const submitHandler = async(e) => {
         e.preventDefault();
         try {
-            const {data} = await axios.post(`/users/login`,{email,password});
+            const {data} = await axios.post(`/auth/login`,{email,password});
             if(data?.error){
                 toast.error(data.error)
             }
