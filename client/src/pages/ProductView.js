@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useAuth } from "../context/auth";
 import ProductCard from "../components/cards/ProductCard"
 
 import Slider from 'react-slick'
@@ -10,6 +11,8 @@ import axios from 'axios'
 import { useParams } from "react-router-dom"
 
 const ProductView = () => {
+    const [auth,setAuth] = useAuth();
+
     // slider settings
     const settings = {
         dots: true,
@@ -91,6 +94,22 @@ const ProductView = () => {
         }
     }
 
+    const addToCart = async() => {
+        try {
+            if(!auth.user){
+                return toast.error('Login to access your Cart!')
+            }
+            if(!product.quantity){
+                return toast.error(`${product.name} is Out of Stock!`)
+            }
+            const {data} = await axios.post(`/user/cart/${auth?.user?.userID}`,{productID: product._id ,quantity: orderQuantity})
+            toast.success(`${product.name} added to cart`)
+        } catch (error) {
+            console.log(error)
+            toast.error("error adding to cart")
+        }
+    }
+
     const Spinner = (<div className='text-center'>
                         <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
                     </div>)
@@ -126,7 +145,7 @@ const ProductView = () => {
                             <input type="number" min='1' max='20' class="form-control rounded" aria-label="quantity" value={orderQuantity}
                             onChange={(e) => setOrderQuantity(e.target.value)}/> 
                         </div>
-                    <button type="button" class="btn btn-order" hidden={!product.quantity}>Add to Cart</button>
+                    <button type="button" class="btn btn-order" hidden={!product.quantity} onClick={addToCart}>Add to Cart</button>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import UserDashboard from './pages/user/Dashboard';
 import Profile from './pages/user/Profile';
 import Orders from './pages/user/Orders';
+import Cart from './pages/user/Cart';
 
 import AdminDashboard from './pages/admin/Dashboard';
 import AdminCategory from './pages/admin/Category';
@@ -39,6 +40,7 @@ function App() {
           <Route path='user' element={<UserDashboard/>}/>
           <Route path='user/profile' element={<Profile/>}/>
           <Route path='user/orders' element={<Orders/>}/>
+          <Route path='user/cart/:userID' element={<Cart/>}/>
         </Route>
         <Route path='/dashboard' element={<AdminRoute/>}>
           <Route path='admin' element={<AdminDashboard/>}/>
