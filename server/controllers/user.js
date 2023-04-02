@@ -66,4 +66,51 @@ const clearCart = async(req,res) => {
     }
 }
 
-module.exports = {getUserCart, addToCart, updateCartItem, deleteCartItem, clearCart}
+
+const getUserWishlist = async(req,res) => {
+    try {
+        const user = await User.findById(req.params.userID);
+        if(!user){
+            return res.status(400).json({msg : 'User not found!'})
+        }
+        if(!user?.wishlist){
+            return res.status(400).json({msg : 'User has no wishlist!'})
+        }
+        res.status(200).json(user?.wishlist)
+    } catch (error) {
+        res.status(400).json({msg : 'error finding user wishlist'})
+        console.log(error)
+    }
+}
+const addToWishlist = async(req,res) => {
+    try {
+        const productID = req.body.productID;
+        const user = await User.findOneAndUpdate(
+            {_id: req.params.userID},
+            { $addToSet: { wishlist: productID } },
+            {new: true});
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({msg : 'error finding user Wislist'})
+        console.log(error)
+    }
+}
+const deleteWishlistItem = async(req,res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.userID, {$pull: {"wishlist": req.params.wishlistProductID }},{new: true});
+        res.status(201).json(user.wishlist)
+    } catch (error) {
+        res.status(400).json({msg : 'error deleting Wishlist-Item'})
+        console.log(error)
+    }
+}
+const clearWishlist = async(req,res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.userID, {$set: {"wishlist": []}},{new: true});
+        res.status(201).json(user)
+    } catch (error) {
+        res.status(400).json({msg : 'error clearing Wishlist'})
+        console.log(error)
+    }
+}
+module.exports = {getUserCart, addToCart, updateCartItem, deleteCartItem, clearCart, getUserWishlist, addToWishlist, deleteWishlistItem, clearWishlist}

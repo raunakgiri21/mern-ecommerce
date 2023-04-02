@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom"
 
 const ProductView = () => {
     const [auth,setAuth] = useAuth();
+    const [wishlist,setWishlist] = useState([]);
 
     // slider settings
     const settings = {
@@ -62,6 +63,9 @@ const ProductView = () => {
             loadRelatedProducts(cat,pid)
         });
     } ,[params?.slug])
+    useEffect(() => {
+        loadWishlist()
+    },[])
     
     const loadProduct = async() => {
         try {
@@ -74,6 +78,15 @@ const ProductView = () => {
             console.log(error)
         }
         return null;
+    }
+
+    const loadWishlist = async() => {
+        try {
+            const {data} = await axios.get(`/user/wishlist/${auth?.user?.userID}`)
+            setWishlist(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
     
     const loadRelatedProducts = async({cat,pid}) => {
@@ -155,7 +168,7 @@ const ProductView = () => {
                     {relatedProducts?.map((p,index) =>{
                         return (
                         <div className='p-2' key={p._id}>
-                            <ProductCard p={p}/>
+                            <ProductCard p={p} _wishlist={wishlist}/>
                         </div>
                     )})}
                 </Slider>

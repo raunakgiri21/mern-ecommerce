@@ -1,6 +1,6 @@
 import { useAuth } from "../../context/auth"
 import Jumbotron from "../../components/cards/jumbotron"
-import CartItem from "./CartItem";
+import CartItem from "../../components/cards/CartItem";
 import UserMenu from "../../components/nav/UserMenu";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -42,7 +42,7 @@ const Cart = () => {
     }
     return (
         <>
-        <Jumbotron pageTitle={`Hello ${auth?.user?.name}`} pageSubtitle='Dashboard' />
+        <Jumbotron pageTitle={`Hello ${auth?.user?.name}`} pageSubtitle='Cart' />
         
         <div className="container-fluid">
             <div className="row">

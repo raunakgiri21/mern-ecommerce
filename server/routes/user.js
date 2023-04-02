@@ -5,7 +5,7 @@ const router = express.Router()
 const {authenticationMiddleware, isAdminMiddleware} = require('../middleware/auth')
 
 // controllers
-const {getUserCart, addToCart, updateCartItem, deleteCartItem, clearCart} = require('../controllers/user')
+const {getUserCart, addToCart, updateCartItem, deleteCartItem, clearCart, getUserWishlist, addToWishlist, deleteWishlistItem, clearWishlist} = require('../controllers/user')
 
 // routes
 router.get('/cart/:userID',authenticationMiddleware,getUserCart) // Get Cart
@@ -14,10 +14,13 @@ router.put('/cart/:userID/:cartItemID',authenticationMiddleware,updateCartItem) 
 router.put('/cart/removeItem/:userID/:cartItemID',authenticationMiddleware,deleteCartItem) // Remove an Cart-item
 router.put('/cart-clear/:userID',authenticationMiddleware,clearCart) // Clear Cart Completely
 
+router.get('/wishlist/:userID',authenticationMiddleware,getUserWishlist) // Get Wishlist
+router.put('/wishlist/:userID',authenticationMiddleware,addToWishlist) // Add to Wislist
+router.put('/wishlist/removeItem/:userID/:wishlistProductID',authenticationMiddleware,deleteWishlistItem) // Remove an Wishlist-item
+router.put('/wishlist-clear/:userID',authenticationMiddleware,clearWishlist) // Clear Wishlist Completely
 
-// router.get('/wishlist',authenticationMiddleware,getUserWishlist)
+
 // router.get('/order-details',authenticationMiddleware,getOrderDetails)
-// router.post('/wishlist',authenticationMiddleware,addToWishlist)
 
 
 

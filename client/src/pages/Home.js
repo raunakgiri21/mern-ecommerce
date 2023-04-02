@@ -3,6 +3,7 @@ import ProductCard from '../components/cards/ProductCard';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { Checkbox, Radio, Slider, Input, Space, Empty } from 'antd';
+import { useAuth } from "../context/auth";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -16,8 +17,10 @@ const Home = () => {
     const [page, setPage] = useState(1)
     const [hasMore, setHasMore] = useState(true)
     const [loadingMore, setLoadingMore] = useState(false)
+    const [wishlist,setWishlist] = useState([]);
 
     const observer = useRef()
+    const [auth,setAuth] = useAuth()
     const lastProductRef = useCallback(node => {
         if(loadingMore) return
         if(observer.current) observer.current.disconnect();
@@ -36,6 +39,7 @@ const Home = () => {
 
     useEffect(() => {
         loadProducts();
+        loadWishlist();
     },[trigger, page]);
     useEffect(() => {
         loadCategories();
@@ -47,6 +51,15 @@ const Home = () => {
             setCategories(data);
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const loadWishlist = async() => {
+        try {
+            const {data} = await axios.get(`/user/wishlist/${auth?.user?.userID}`)
+            setWishlist(data)
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -175,12 +188,12 @@ const Home = () => {
                             if(products.length === index + 1)
                             return (
                                 <div ref={lastProductRef} className='col-md-4' key={p._id}>
-                                    <ProductCard p={p}/>
+                                    <ProductCard p={p} _wishlist={wishlist}/>
                                 </div>
                             )
                             return (
                             <div className='col-md-4' key={p._id}>
-                                <ProductCard p={p}/>
+                                <ProductCard p={p} _wishlist={wishlist}/>
                             </div>
                         )})}
                         {hasMore || loadingMore ? loading : products.length ? <p>...</p> : <Empty />}

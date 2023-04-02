@@ -27,6 +27,9 @@ const Menu = () => {
     (
         <div className='dropdown d-flex flex-row'>
             <li style={{marginLeft: '1rem'}}>
+                <NavLink className="nav-link" to={`/dashboard/user/wishlist/${auth?.user?.userID}`}><i className='fas fa-heart' style={{fontSize:'20px',color:'#1284b4'}}></i></NavLink>
+            </li>
+            <li style={{marginLeft: '1rem'}}>
                 <NavLink className="nav-link" to={`/dashboard/user/cart/${auth?.user?.userID}`}><i className='fas fa-shopping-cart' style={{fontSize:'20px',color:'#1284b4'}}></i></NavLink>
             </li>
             <li style={{marginLeft: '1rem'}}>
