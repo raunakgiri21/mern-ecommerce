@@ -8,7 +8,7 @@ import Register from './pages/auth/Register';
 import NotFound from './pages/NotFound';
 
 import UserDashboard from './pages/user/Dashboard';
-import Profile from './pages/user/Profile';
+import Profile from './pages/Profile';
 import Orders from './pages/user/Orders';
 import Cart from './pages/user/Cart';
 import Wishlist from './pages/user/Wishlist';

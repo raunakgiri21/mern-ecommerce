@@ -70,6 +70,42 @@ const login = async (req,res) => {
     }
 }
 
+const getUserDetails = async(req,res) => {
+    try {
+        const user = await User.findById(req.params.userID);
+        res.status(200).json({user :{
+            userID: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            address: user.address,
+        }})
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+const profileUpdate = async(req,res) => {
+    try {
+        const {name,password,address} = req.body;
+        const user = await User.findById(req.body._id)
+        if(password && password.length<8){
+            return res.status(400).json({error: "Password length should be more than 8!"})
+        }
+        const hashedPassword = password? await hashPassword(password) : undefined;
+        const updated = await User.findByIdAndUpdate(req.body._id,{name: name || user.name, password: hashedPassword ,address: address || user.address},{new: true})
+        res.status(200).json({user :{
+            userID: updated._id,
+            name: updated.name,
+            email: updated.email,
+            role: updated.role,
+            address: updated.address,
+        }})
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
 module.exports = {
-    users, register, login
+    users, register, login, getUserDetails, profileUpdate
 }
