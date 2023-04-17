@@ -1,10 +1,12 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Jumbotron from '../../components/cards/jumbotron'
 import { useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/auth'
+import { Input } from 'antd'
+import GoogleButton from 'react-google-button'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -41,6 +43,14 @@ const Login = () => {
             toast.error(error?.response?.data?.error || 'Login Failed!')
         }
     }
+
+    const googleBtnHandler = async() => {
+        try {
+            window.open("http://localhost:8000/api/v1/auth/google", "_self")
+        } catch (error) {
+            toast.error(error?.response?.data?.error || 'Google SignIn Failed!')
+        }
+    }
     return (
         <div>
             <Jumbotron pageTitle="Login" pageSubtitle="Welcome to React E-Commerce"/>
@@ -48,9 +58,12 @@ const Login = () => {
                 <div className='row'>
                     <div className='col-md-6 offset-md-3'>
                         <form onSubmit={submitHandler}>
-                            <input type='email' className='form-control mb-4 p-1' placeholder='Enter Your Email' value={email} onChange={(e) => emailChangeHandler(e)} autoFocus/>
-                            <input type='password' className='form-control mb-4 p-1' placeholder='Enter Your Password' value={password} onChange={(e) => passwordChangeHandler(e)}/>
-                            <button className='btn btn-primary' type='submit'>Submit</button>
+                            <Input type='email' className='mb-4 p-1' placeholder='Enter Your Email' value={email} onChange={(e) => emailChangeHandler(e)} autoFocus/>
+                            <Input.Password minLength={8} className='mb-4 p-1' placeholder='Enter Your Password' value={password} onChange={(e) => passwordChangeHandler(e)}/>
+                            <button className='btn btn-primary' type='submit'>Login</button>
+                            <hr/>
+                            <h5 className='text-muted'>OR</h5>
+                            <GoogleButton onClick={googleBtnHandler}/>
                         </form>
                     </div>
                 </div>

@@ -53,6 +53,9 @@ const login = async (req,res) => {
         if(!user){
             return res.status(400).json({error: "User doesn't exists!"})
         }
+        if(!user?.password){
+            throw ({error:"Failed! Try Google SignIn"})
+        }
         const isPasswordCorrect = await comparePassword(password,user.password);
         if(!isPasswordCorrect){
             return res.status(400).json({error: "incorrect password!"})
@@ -65,6 +68,15 @@ const login = async (req,res) => {
             role: user.role,
             address: user.address,
         }, token});
+    } catch (error) {
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
+const googleAuth = async(req,res) => {
+    try {
+        res.status(200).json({msg: "Google Login"})
     } catch (error) {
         res.status(400).json(error)
     }
@@ -107,5 +119,5 @@ const profileUpdate = async(req,res) => {
 }
 
 module.exports = {
-    users, register, login, getUserDetails, profileUpdate
+    users, register, login, googleAuth, getUserDetails, profileUpdate
 }

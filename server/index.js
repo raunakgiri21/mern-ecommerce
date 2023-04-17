@@ -1,6 +1,9 @@
 const express = require('express');
 const connectDB = require('./db/connect')
 require('dotenv').config()
+const passport = require('passport')
+const session = require('cookie-session')
+const passportSetup = require('./helpers/passport-setup')
 const morgan = require('morgan')
 const cors = require('cors')
 
@@ -15,13 +18,27 @@ const port = process.env.PORT || 5000;
 
 
 // middleware
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,PATCH,DELETE",
+    credentials: true,
+}))
 app.use(express.json())
 app.use(morgan('dev'))
 
 app.get('/',(req,res)=> {
     res.status(200).json({msg: "Welcome!"})
 })
+
+
+app.use(session({
+    maxAge: 7*24*60*60*1000,
+    keys: ['secret']
+}))
+
+// initialize passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // use routes
 app.use('/api/v1/auth',auth)
