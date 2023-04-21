@@ -1,17 +1,23 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../context/auth'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 import FoodStrap from '../../assets/images/FOODSTRAP.png'
 import React from 'react'
 
 const Menu = () => {
     // hooks
     const [auth,setAuth] = useAuth();
+    const [cookies,setCookie,removeCookie] = useCookies()
     const navigate = useNavigate();
 
     const logoutHandler = () => {
         setAuth({ ...auth, user: null, token: ''});
         localStorage.removeItem('auth');
+        removeCookie('user')
+        removeCookie('token')
+        removeCookie('session')
+        removeCookie('session.sig')
         navigate('/login');
     }
 

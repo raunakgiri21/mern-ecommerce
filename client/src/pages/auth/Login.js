@@ -46,7 +46,7 @@ const Login = () => {
 
     const googleBtnHandler = async() => {
         try {
-            window.open("http://localhost:8000/api/v1/auth/google", "_self")
+            const newWindow = window.open("http://localhost:8000/api/v1/auth/google", "_self")
         } catch (error) {
             toast.error(error?.response?.data?.error || 'Google SignIn Failed!')
         }

@@ -28,15 +28,46 @@ const Cart = () => {
 
     const clearCartHandler = async() => {
         try {
-            let answer = window.confirm("Do You Really Want To Clear The Cart?")
-            if(!answer){
-                return
-            }
             const {data} = await axios.put(`/user/cart-clear/${auth?.user?.userID}`)
             setChange(prev => !prev)
             toast.success("Cart Cleared!")
         } catch (error) {
             toast.error("Error while clearing your cart!")
+            console.log(error)
+        }
+    }
+
+    const checkoutHandler = async() => {
+        try {
+            const {data:{key}} = await axios.get('http://localhost:8000/api/v1/razorpay-key')
+            const {data:{order}} = await axios.post('http://localhost:8000/api/v1/checkout/razor-pay',{amount: Number(totalPrice),cart: cart})
+
+            console.log(order.id)
+            const options = {
+                key: key, // Enter the Key ID generated from the Dashboard
+                amount: order.amount,
+                currency: "INR",
+                name: "FOODSTRAP",
+                description: "Test Transaction",
+                image: "https://example.com/your_logo",
+                order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                callback_url: "http://localhost:8000/api/v1/checkout/payment-verification",
+                prefill: {
+                    name: auth?.user?.name,
+                    email: auth?.user?.email,
+                    contact: "9000090000"
+                },
+                notes: {
+                    address: "Razorpay Corporate Office"
+                },
+                theme: {
+                    color: "#2282A0"
+                }
+            };
+            const razor = new window.Razorpay(options);
+            razor.open()
+        } catch (error) {
+            toast.error("Error while opening razorpay!")
             console.log(error)
         }
     }
@@ -70,7 +101,7 @@ const Cart = () => {
                                 <hr/>
                                 <p className="text-dark">Total Items: {cart.length}</p>
                                 <p><strong>Total Price: ₹{totalPrice}</strong></p>
-                                <button className="btn btn-info mb-5" style={{maxHeight: '40px'}} onClick={() => console.log("CheckOut")} hidden={!cart.length}>Checkout</button>
+                                <button className="btn btn-info mb-5" style={{maxHeight: '40px'}} onClick={checkoutHandler} hidden={!cart.length}>Checkout</button>
                             </div>
                             <button className="btn btn-secondary mb-5" style={{maxHeight: '40px'}} onClick={clearCartHandler} hidden={!cart.length}>Clear Cart</button>
                         </div>

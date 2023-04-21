@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, createContext, useContext,useEffect } from "react";
 import axios from "axios";
+import { useCookies } from 'react-cookie'
 
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
+    const [cookies, setCookie] = useCookies()
     const [auth, setAuth] = useState({
         user: null,
         token: '',
@@ -19,6 +21,9 @@ const AuthProvider = ({children}) => {
         if(data){
             const parsedData = JSON.parse(data);
             setAuth({...auth,user: parsedData.user, token: parsedData.token})
+        }
+        else if(!data){
+            setAuth({...auth,user: cookies?.user, token: cookies?.token})
         }
         // console.log("[AuthProvider] useEffect",auth?.token);
     },[]);
