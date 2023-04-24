@@ -33,6 +33,7 @@ const register = async (req,res) => {
             email: user.email,
             role: user.role,
             address: user.address,
+            phone: user.phone,
         }, token});
     } catch (error) {
         res.status(400).json(error);
@@ -67,6 +68,7 @@ const login = async (req,res) => {
             email: user.email,
             role: user.role,
             address: user.address,
+            phone: user.phone,
         }, token});
     } catch (error) {
         console.log(error)
@@ -91,6 +93,7 @@ const getUserDetails = async(req,res) => {
             email: user.email,
             role: user.role,
             address: user.address,
+            phone: user.phone,
         }})
     } catch (error) {
         res.status(400).json(error)
@@ -112,6 +115,7 @@ const profileUpdate = async(req,res) => {
             email: updated.email,
             role: updated.role,
             address: updated.address,
+            phone: updated.phone
         }})
     } catch (error) {
         res.status(400).json(error)

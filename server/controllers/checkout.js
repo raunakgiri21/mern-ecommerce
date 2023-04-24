@@ -41,7 +41,7 @@ const paymentVerification = async(req,res) => {
                                         .digest('hex');
 
         if(expectedSignature === razorpay_signature) {
-            res.status(200).json({success: true})
+            res.status(200).json({success: true, razorpay_order_id, razorpay_payment_id})
         }
         else {
             res.status(200).json({success: false})

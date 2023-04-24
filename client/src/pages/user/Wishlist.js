@@ -39,8 +39,8 @@ const Wishlist = () => {
 
     const html = wishlist?.length ? (<div className='row' style={{maxHeight: '90vh', overflow: 'auto', overflowX: 'hidden'}} id='id0'>
                                         {wishlist?.map((item,index) => 
-                                        (<div className='col-md-4' key={item._id}>
-                                            <WishlistItem item={item} setChange={setChange} _wishlist={wishlist}/>   
+                                        (<div className='col-md-4' key={index}>
+                                            <WishlistItem item={item} key={item._id} setChange={setChange} _wishlist={wishlist}/>   
                                         </div>))}
                                     </div>)
                                     :

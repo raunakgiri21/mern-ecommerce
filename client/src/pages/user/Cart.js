@@ -6,16 +6,19 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { Empty } from "antd";
+import { Form, Input } from 'antd';
 
 const Cart = () => {
     const [auth,setAuth] = useAuth();
     const [cart,setCart] = useState([]);
     const [change, setChange] = useState(false);
+    const [address,setAddress] = useState(auth?.user?.address)
+    const [phone,setPhone] = useState(auth?.user?.phone)
     const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        loadCart();
-    },[change])
+        loadCart()
+    },[change]) 
 
     const loadCart = async() => {
         try {
@@ -55,7 +58,8 @@ const Cart = () => {
                 prefill: {
                     name: auth?.user?.name,
                     email: auth?.user?.email,
-                    contact: "9000090000"
+                    address: address,
+                    contact: phone
                 },
                 notes: {
                     address: "Razorpay Corporate Office"
@@ -71,6 +75,7 @@ const Cart = () => {
             console.log(error)
         }
     }
+             
     return (
         <>
         <Jumbotron pageTitle={`Hello ${auth?.user?.name}`} pageSubtitle='Cart' />
@@ -101,7 +106,47 @@ const Cart = () => {
                                 <hr/>
                                 <p className="text-dark">Total Items: {cart.length}</p>
                                 <p><strong>Total Price: ₹{totalPrice}</strong></p>
-                                <button className="btn btn-info mb-5" style={{maxHeight: '40px'}} onClick={checkoutHandler} hidden={!cart.length}>Checkout</button>
+                                <div hidden={!cart.length}>
+                                <Form
+                                    name="basic"
+                                    labelCol={{
+                                    span: 8,
+                                    }}
+                                    wrapperCol={{
+                                    span: 16,
+                                    }}
+                                    style={{
+                                    maxWidth: 600,
+                                    }}
+                                    initialValues={{
+                                    address: address,
+                                    phone: phone,
+                                    }}
+                                    autoComplete="off"
+                                >
+                                    <Form.Item
+                                    label="Address"
+                                    name="address"
+                                    rules={[
+                                        {
+                                        required: true,
+                                        message: 'Please input your address!',
+                                        },
+                                    ]}
+                                    >
+                                    <Input onChange={(e) => setAddress(e.target.value)}/>
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        name="phone"
+                                        label="Phone"
+                                        rules={[{ required: true, message: 'Please input your phone number!' }]}
+                                    >
+                                        <Input addonBefore={"+91"} style={{ width: '100%'}} maxLength={10} minLength={10} onChange={(e) => setPhone(e.target.value)}/>
+                                    </Form.Item>
+                                </Form>
+                                </div>
+                                <button className="btn btn-info mb-5" style={{maxHeight: '40px'}} onClick={checkoutHandler} hidden={!cart.length} disabled={!address || !phone || phone?.length<10}>Checkout</button>
                             </div>
                             <button className="btn btn-secondary mb-5" style={{maxHeight: '40px'}} onClick={clearCartHandler} hidden={!cart.length}>Clear Cart</button>
                         </div>
