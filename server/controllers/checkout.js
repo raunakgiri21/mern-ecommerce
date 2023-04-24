@@ -11,17 +11,16 @@ const instance = new Razorpay({
 
 const razorPay = async(req,res) => {
     try {
+        const {amount, cart, address, phone, buyer, email} = req.body;
         const options = {
-            amount: Number(req.body.amount * 100),  // amount in the smallest currency unit
+            amount: Number(amount * 100),  // amount in the smallest currency unit
             currency: "INR",
         };
         const order = await instance.orders.create(options);
-        console.log(order)
-        const products = req.body.cart.map(c => {
+        const products = cart.map(c => {
             return {productID: c.productID,quantity: c.quantity}
         })
-        console.log(products)  
-        // const newOrder = await Order.create({products})
+        const newOrder = await Order.create({products,buyer, amount: amount/100, razorpay_order_id: order.id, address: address, phone: phone})
         res.status(200).json({
             success: true,
             order,
@@ -41,6 +40,7 @@ const paymentVerification = async(req,res) => {
                                         .digest('hex');
 
         if(expectedSignature === razorpay_signature) {
+            const updateOrder = await Order.findOneAndUpdate({razorpay_order_id},{success: true},{new: true})
             res.status(200).json({success: true, razorpay_order_id, razorpay_payment_id})
         }
         else {

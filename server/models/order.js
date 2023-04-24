@@ -22,9 +22,9 @@ const orderSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
-    razorpay_payment_id: {
-        type: String,
-        unique: true,
+    success: {
+        type: Boolean,
+        default: false,
     },
     status: {
         type: String,

@@ -19,7 +19,8 @@ const Orders = () => {
     const getUserOrders = async() => {
         try {
             const {data} = await axios.post("/order",{userID: auth?.user?.userID})
-            setOrders(data)
+            const _orders = data.filter(d => d.success)
+            setOrders(_orders)
         } catch (error) {
             toast.error("Error fetching order details!")
         }

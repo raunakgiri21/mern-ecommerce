@@ -43,9 +43,8 @@ const Cart = () => {
     const checkoutHandler = async() => {
         try {
             const {data:{key}} = await axios.get('http://localhost:8000/api/v1/razorpay-key')
-            const {data:{order}} = await axios.post('http://localhost:8000/api/v1/checkout/razor-pay',{amount: Number(totalPrice),cart: cart})
+            const {data:{order}} = await axios.post('http://localhost:8000/api/v1/checkout/razor-pay',{amount: Number(totalPrice),cart: cart, address: address, phone: phone, buyer: auth?.user?.userID, email: auth?.user?.email})
 
-            console.log(order.id)
             const options = {
                 key: key, // Enter the Key ID generated from the Dashboard
                 amount: order.amount,
@@ -61,9 +60,7 @@ const Cart = () => {
                     address: address,
                     contact: phone
                 },
-                notes: {
-                    address: "Razorpay Corporate Office"
-                },
+                notes: {},
                 theme: {
                     color: "#2282A0"
                 }
