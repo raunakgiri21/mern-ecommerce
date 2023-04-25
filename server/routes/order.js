@@ -5,9 +5,11 @@ const router = express.Router()
 const {authenticationMiddleware,isAdminMiddleware} = require('../middleware/auth')
 
 // controllers
-const {createOrder,getUserOrders} = require('../controllers/order')
+const {createOrder,getAllOrders,getUserOrders,updateOrder} = require('../controllers/order')
 
+router.get('/admin',authenticationMiddleware,isAdminMiddleware,getAllOrders)
 router.post('/',authenticationMiddleware,getUserOrders)
 router.post('/create-order',authenticationMiddleware,createOrder)
+router.put('/update-order',authenticationMiddleware,isAdminMiddleware,updateOrder)
 
 module.exports = router

@@ -1,4 +1,3 @@
-const User = require('../models/user')
 const Order = require('../models/order')
 
 const createOrder = async(req,res) => {
@@ -21,5 +20,25 @@ const getUserOrders = async(req,res) => {
     }
 }
 
+const updateOrder = async(req,res) => {
+    try {
+        const orderID = req.body.orderID;
+        const status = req.body.status;
+        const order = await Order.findByIdAndUpdate(orderID,{status: status},{new: true})
+        res.status(200).json(order)
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
 
-module.exports = {getUserOrders,createOrder}
+const getAllOrders = async(req,res) => {
+    try {
+        const orders = await Order.find({})
+        res.status(200).json(orders)
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}
+
+
+module.exports = {getUserOrders,getAllOrders,updateOrder,createOrder}

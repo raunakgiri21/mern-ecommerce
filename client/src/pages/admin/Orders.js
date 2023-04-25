@@ -1,18 +1,18 @@
 import { useAuth } from "../../context/auth"
 import Jumbotron from "../../components/cards/jumbotron"
-import UserMenu from "../../components/nav/UserMenu";
+import AdminMenu from "../../components/nav/AdminMenu";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import { Empty, Spin } from "antd";
+import { Spin, Empty } from "antd";
 import { useEffect, useState } from "react";
-import SingleOrder from "../../components/cards/SingleOrder";
+import AdminSingleOrder from "../../components/cards/AdminSingleOrder";
 
 const Orders = () => {
     // context
     const [auth,setAuth] = useAuth();
     // state
     const [orders,setOrders] = useState([]);
-    const [loading,setLoading] = useState(true);
+    const [loading,setLoading] = useState(true)
 
     useEffect(() => {
         if(auth?.token) getUserOrders();
@@ -20,10 +20,10 @@ const Orders = () => {
 
     const getUserOrders = async() => {
         try {
-            const {data} = await axios.post("/order",{userID: auth?.user?.userID})
+            const {data} = await axios.get("/order/admin")
             const _orders = data.filter(d => d.success)
             setOrders(_orders)
-            setLoading(false)
+            setLoading(prev => !prev)
         } catch (error) {
             toast.error("Error fetching order details!")
         }
@@ -36,11 +36,11 @@ const Orders = () => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-md-3">
-                    <UserMenu/>
+                    <AdminMenu/>
                 </div>
                 <div className="col-md-9">
                     <div className="p-3 mt-2 mb-2 bg-light">
-                        <h4>Order History</h4>
+                        <h4>Recent Orders</h4>
                     </div>
                     {
                         loading?
@@ -50,7 +50,7 @@ const Orders = () => {
                         !orders.length?
                         <Empty description="No Orders"/>:
                         <div className="row p-3 overflowY-auto mh-100">
-                            {orders?.map((o,i) => <SingleOrder key={o._id} i={i} o={o}/>)}
+                            {orders?.map((o,i) => <AdminSingleOrder key={o._id} i={i} o={o}/>)}
                         </div>
                     }
                 </div>

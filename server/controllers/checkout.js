@@ -20,7 +20,7 @@ const razorPay = async(req,res) => {
         const products = cart.map(c => {
             return {productID: c.productID,quantity: c.quantity}
         })
-        const newOrder = await Order.create({products,buyer, amount: amount/100, razorpay_order_id: order.id, address: address, phone: phone})
+        const newOrder = await Order.create({products,buyer, amount: order.amount, razorpay_order_id: order.id, address: address, phone: phone})
         res.status(200).json({
             success: true,
             order,
