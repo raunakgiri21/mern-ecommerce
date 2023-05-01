@@ -84,6 +84,15 @@ const googleAuth = async(req,res) => {
     }
 }
 
+const getAllUsers = async(req,res) => {
+    try {
+        const users = await User.find({}).sort('-role createdAt')
+        res.status(200).json(users) 
+    } catch (error) {
+        res.status(400).json(error)        
+    }
+}
+
 const getUserDetails = async(req,res) => {
     try {
         const user = await User.findById(req.params.userID);
@@ -95,6 +104,15 @@ const getUserDetails = async(req,res) => {
             address: user.address,
             phone: user.phone,
         }})
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+const deleteUserByID = async(req,res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.userID)
+        res.status(200).json(user)
     } catch (error) {
         res.status(400).json(error)
     }
@@ -123,5 +141,5 @@ const profileUpdate = async(req,res) => {
 }
 
 module.exports = {
-    users, register, login, googleAuth, getUserDetails, profileUpdate
+    users, register, login, googleAuth, getAllUsers, deleteUserByID, getUserDetails, profileUpdate
 }
