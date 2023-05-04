@@ -49,7 +49,7 @@ const Orders = () => {
                         </div>:
                         !orders.length?
                         <Empty description="No Orders"/>:
-                        <div className="row p-3 overflowY-auto mh-100">
+                        <div className="row p-3" style={{height: '52vh',overflowY: 'auto'}}>
                             {orders?.map((o,i) => <SingleOrder key={o._id} i={i} o={o}/>)}
                         </div>
                     }

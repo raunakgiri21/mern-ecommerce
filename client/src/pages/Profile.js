@@ -14,7 +14,6 @@ const Profile = () => {
 
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
-    const [address,setAddress] = useState('');
     const [password,setPassword] = useState('');
 
     useEffect(() => {
@@ -26,7 +25,6 @@ const Profile = () => {
             const {data} = await axios.get(`/auth/user-details/${auth?.user?.userID}`)
             setName(data?.user?.name)
             setEmail(data?.user?.email)
-            setAddress(data?.user?.address)
         } catch (error) {
             console.log(error)
             toast.error("Error getting user details!")
@@ -35,7 +33,7 @@ const Profile = () => {
 
     const updateHandler = async() => {
         try {
-            const updated = await axios.put('/auth/profile',{_id:auth?.user?.userID,name,password,address})
+            const updated = await axios.put('/auth/profile',{_id:auth?.user?.userID,name,password})
             toast.success(`Updated ${updated?.data?.user?.name}`)
             navigate(`/dashboard/${updated?.data?.user?.role === 1 ?'admin':'user'}`)
         } catch (error) {
@@ -53,7 +51,7 @@ const Profile = () => {
                         labelCol={{ span: 8 }}
                         wrapperCol={{ span: 16 }}
                         style={{ maxWidth: 600, marginTop: '2rem' }}
-                        initialValues={{name: name,email: email,address: address}}
+                        initialValues={{name: name,email: email}}
                         onFinish={updateHandler}
                         onFinishFailed={updateFailedHandler}
                         autoComplete="off"
@@ -77,13 +75,6 @@ const Profile = () => {
                         name="password"
                         >
                         <Input.Password minLength={8} onChange={e => setPassword(e.target.value)}/>
-                        </Form.Item>
-
-                        <Form.Item
-                        label="Address"
-                        name="address"
-                        >
-                        <Input onChange={e => setAddress(e.target.value)}/>
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
