@@ -31,12 +31,27 @@ const orderSchema = new mongoose.Schema({
         default: "Not processed",
         enum: ["Not processed","Processing","Shipped","Delivered","Cancelled"]
     },
-    address: {
-        type: String,
+    address:         {
+        street1: {
+            type: String,
+        },
+        street2: {
+            type: String,
+        },
+        state: {
+            type: String,
+        },
+        city: {
+            type: String,
+        },
+        pinCode: {
+            type: String,
+        },
+        phone: {
+            type: String,
+            trim: true,
+        }
     },
-    phone: {
-        type: String,
-    }
 },{timestamps: true})
 
 module.exports = mongoose.model('Order', orderSchema)

@@ -68,8 +68,8 @@ const Orders = () => {
                                             <th scope="col">Role</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">Address</th>
+                                            {/* <th scope="col">Phone</th>
+                                            <th scope="col">Address</th> */}
                                             <th scope="col">Registered On</th>
                                             <th scope="col">Action</th>
                                         </tr>
@@ -83,8 +83,8 @@ const Orders = () => {
                                                     <td>{u?.role?"Admin":"User"}</td>
                                                     <td>{u?.name}</td>
                                                     <td>{u?.email}</td>
-                                                    <td>{u?.phone?u.phone:'N/A'}</td>
-                                                    <td>{u?.address?u.address:'N/A'}</td>
+                                                    {/* <td>{u?.phone?(u?.phone):'N/A'}</td>
+                                                    <td>{u?.address?(u?.address):'N/A'}</td> */}
                                                     <td>{moment(u?.createdAt).format("DD-MM-YYYY")}</td>
                                                     <td>{!u?.role? <Button danger onClick={(e) => deleteUserHandler(u?._id,u?.name)}>Delete</Button>: null}</td>
                                                 </tr>
