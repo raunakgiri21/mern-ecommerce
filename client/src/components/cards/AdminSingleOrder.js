@@ -81,11 +81,11 @@ const SingleOrder = ({o,i}) => {
         <div className="p-2 pb-0 text-muted">
             <dl className="row m-0">
             <dt className="col-sm-3">Delivery Address :</dt>
-            <dd className="col-sm-9">{o?.address}</dd>
+            <dd className="col-sm-9">{o?.address?.street1}, {o?.address?.city}, {o?.address?.pinCode}</dd>
 
-            <dt className="col-sm-3">Phone Number :</dt>
+            <dt className="col-sm-3">Contact Number :</dt>
             <dd className="col-sm-9">
-                <p>{o?.phone}</p>
+                <p>{o?.address?.phone}</p>
             </dd>
             </dl>
         </div>

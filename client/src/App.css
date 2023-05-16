@@ -24,6 +24,17 @@
   color: white;
 }
 
+.btn-ggl {
+  opacity: 90%;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+}
+
+.btn-ggl:hover {
+  opacity: 100%;
+}
+
 .App-link {
   color: #61dafb;
 }

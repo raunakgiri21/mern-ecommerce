@@ -6,7 +6,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuth } from '../../context/auth'
 import { Input } from 'antd'
-import GoogleButton from 'react-google-button'
+import googleIcon from '../../assets/images/btn_google_signin_light_normal_web.png' 
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -62,8 +62,10 @@ const Login = () => {
                             <Input.Password minLength={8} className='mb-4 p-1' placeholder='Enter Your Password' value={password} onChange={(e) => passwordChangeHandler(e)}/>
                             <button className='btn btn-primary' type='submit'>Login</button>
                             <hr/>
-                            <h5 className='text-muted'>OR</h5>
-                            <GoogleButton onClick={googleBtnHandler}/>
+                            <div className='d-flex col'>
+                            <h5 className='text-muted m-2'>OR</h5>
+                            <button className='btn-ggl p-0' onClick={googleBtnHandler}><img src={googleIcon} style={{objectFit: 'fill'}}></img></button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -81,6 +81,10 @@ const Cart = () => {
                 _address.phone = address[radio-2]?.phone;
                 _address.street1 = address[radio-2]?.street1;
                 _address.street2 = address[radio-2]?.street2;
+            } else {
+                if(!state || !city || !pincode || !state || !street01 || !phoneNumber){
+                    return toast.error("Fields cannot be empty!")
+                }
             }
             if(isNewAddress) {
                 setAuth({...auth,user: {

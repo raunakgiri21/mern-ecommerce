@@ -25,7 +25,7 @@ const AdminRoute = () => {
                     setOk(false);
                 }
             } catch (error) {
-                toast.error("UnAuthorized Access!")
+                toast.error("UnAuthorized Admin Access!")
             }
         }
         adminCheck();
