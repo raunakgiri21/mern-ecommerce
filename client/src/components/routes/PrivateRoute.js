@@ -25,6 +25,7 @@ const PrivateRoute = () => {
                     setOk(false);
                 }
             } catch (error) {
+                console.log(error)
                 toast.error("UnAuthorized Access!")
             }
         }

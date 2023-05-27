@@ -64,9 +64,9 @@ const Login = () => {
                             <hr/>
                             <div className='d-flex col'>
                             <h5 className='text-muted m-2'>OR</h5>
-                            <button className='btn-ggl p-0' onClick={googleBtnHandler}><img src={googleIcon} style={{objectFit: 'fill'}}></img></button>
                             </div>
                         </form>
+                        <button className='btn-ggl p-0' onClick={googleBtnHandler}><img src={googleIcon} style={{objectFit: 'fill'}}></img></button>
                     </div>
                 </div>
             </div>

@@ -5,8 +5,9 @@ import UserMenu from "../../components/nav/UserMenu";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { Empty, Spin } from "antd";
+import { Empty } from "antd";
 import { Form, Input, Modal, Radio, Space } from 'antd';
+import logo from '../../assets/images/ecom_logo2.png'
 
 const Cart = () => {
     const [auth,setAuth] = useAuth();
@@ -100,9 +101,9 @@ const Cart = () => {
                 currency: "INR",
                 name: "FOODSTRAP",
                 description: "Test Transaction",
-                image: "https://example.com/your_logo",
+                image: logo,
                 order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                callback_url: "http://localhost:8000/api/v1/checkout/payment-verification",
+                callback_url: `${process.env.REACT_APP_API}/checkout/payment-verification`,
                 prefill: {
                     name: auth?.user?.name,
                     email: auth?.user?.email,
