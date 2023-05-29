@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Jumbotron from "../../components/cards/jumbotron"
 import AdminMenu from "../../components/nav/AdminMenu";
 import axios from "axios";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { Pagination, Spin } from "antd";
 
@@ -82,7 +83,7 @@ const AdminProducts = () => {
                                         <div className="card-body">
                                             <h5 className="card-title">{p.name}</h5>
                                             <p className="card-text">{p?.description?.substring(0,160)}</p>
-                                            <div className="card-text"><small className="text-muted">{p.createdAt}</small></div>
+                                            <div className="card-text"><small className="text-muted">{moment(p.createdAt).fromNow()}</small></div>
                                         </div>
                                     </div>
                                 </div>

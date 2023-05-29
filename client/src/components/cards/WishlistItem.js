@@ -3,6 +3,8 @@ import { Badge } from 'antd';
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-hot-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faH, faHeart} from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -69,7 +71,7 @@ const WishlistItem = ({item,setChange,_wishlist}) => {
                 style={{ height: "250px", width: '100%', objectFit: 'contain'}}/>
             </Badge.Ribbon>
             <div className='heart' style={{position: 'absolute', top: '10px',right: '10px'}}>
-                <i className={`fa${inWishlist?'s':'r'} fa-heart`} style={{fontSize: '32px', color: 'red', cursor: 'pointer'}} onClick={toggleInWishlist}></i>
+                <FontAwesomeIcon icon={faHeart} style={{fontSize: '32px', color: 'red', cursor: 'pointer'}} onClick={toggleInWishlist}></FontAwesomeIcon>
             </div>
             <div className="card-body border-top border-light bg-light rounded" style={{minHeight: '11rem'}}>
                 <h5>{product.name}</h5>

@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../../context/auth'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import FoodStrap from '../../assets/images/FOODSTRAP.png'
 import React from 'react'
 
@@ -33,10 +35,10 @@ const Menu = () => {
     (
         <div className='dropdown d-flex flex-row'>
             <li style={{marginLeft: '1rem'}}>
-                <NavLink className="nav-link" to={`/dashboard/user/wishlist/${auth?.user?.userID}`}><i className='fas fa-heart' style={{fontSize:'20px',color:'#1284b4'}}></i></NavLink>
+                <NavLink className="nav-link" to={`/dashboard/user/wishlist/${auth?.user?.userID}`}><FontAwesomeIcon icon={faHeart} style={{fontSize:'20px',color:'#1284b4'}}/></NavLink>
             </li>
             <li style={{marginLeft: '1rem'}}>
-                <NavLink className="nav-link" to={`/dashboard/user/cart/${auth?.user?.userID}`}><i className='fas fa-shopping-cart' style={{fontSize:'20px',color:'#1284b4'}}></i></NavLink>
+                <NavLink className="nav-link" to={`/dashboard/user/cart/${auth?.user?.userID}`}><FontAwesomeIcon icon={faCartShopping} style={{fontSize:'20px',color:'#1284b4'}}/></NavLink>
             </li>
             <li style={{marginLeft: '1rem'}}>
                 <a className='nav-link pointer dropdown-toggle' data-bs-toggle='dropdown'>

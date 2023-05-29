@@ -48,7 +48,7 @@ const Register = () => {
     }
     return (
         <div>
-            <Jumbotron pageTitle="Register" pageSubtitle="Welcome to React E-Commerce"/>
+            <Jumbotron pageTitle="Register" pageSubtitle="Welcome to FoodStrap E-Commerce"/>
             <div className='container mt-5'>
                 <div className='row'>
                     <div className='col-md-6 offset-md-3'>

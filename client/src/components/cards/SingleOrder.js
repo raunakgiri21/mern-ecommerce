@@ -1,5 +1,7 @@
 import { useState , useEffect} from "react"
 import moment from "moment"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import OrderedProduct from "../../components/cards/OrderedProduct";
 
 
@@ -30,7 +32,7 @@ const SingleOrder = ({o,i}) => {
                     <td>{o?.products?.length} items</td>
                     <td>₹ {o?.amount/100}</td>
                     <td>
-                    <i className={`fas fa-caret-${down? 'down': 'up'}`} style={{fontSize:"28px", color: "#1284b4", cursor: "pointer"}} onClick={() => setDown(prev => !prev)}></i>
+                    <FontAwesomeIcon icon={down? faCaretDown : faCaretUp} style={{fontSize:"28px", color: "#1284b4", cursor: "pointer"}} onClick={() => setDown(prev => !prev)}></FontAwesomeIcon>
                     </td>
                 </tr>
             </tbody>
