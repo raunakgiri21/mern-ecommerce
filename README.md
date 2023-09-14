@@ -1,7 +1,7 @@
 # FOODSTRAP
 ## 😋 Food Ordering eCommerce Website
 
-### Features included:
+### 🤖 Features included:
 #### 1) Search, filter adn sort different categories of food items.
 #### 2) User Authentication with Google as alternate option.
 #### 3) Wishlist and Add-to-Cart Option.
