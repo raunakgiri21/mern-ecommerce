@@ -39,7 +39,7 @@ const Home = () => {
 
     useEffect(() => {
         loadProducts();
-        loadWishlist();
+        if(auth?.user) loadWishlist();
     },[trigger, page]);
     useEffect(() => {
         loadCategories();
