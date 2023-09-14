@@ -21,11 +21,13 @@ const port = process.env.PORT || 5000;
 
 
 // middleware
-app.use(cors({
-    origin: "http://localhost:8000",
+app.use(
+  cors({
+    origin: "http://ecommerce-raunak.up.railway.app",
     methods: "GET,POST,PUT,PATCH,DELETE",
     credentials: true,
-}))
+  })
+);
 app.use(express.json())
 app.use(express.urlencoded());
 app.use(morgan('dev'))

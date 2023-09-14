@@ -15,15 +15,15 @@ router.post('/login',login)
 
 router.get("/login/success",(req,res) => {
     if(req.user) {
-        res.status(200).cookie("user",req.user.user).cookie("token",req.user.token).redirect("http://localhost:8000/")
+        res.status(200).cookie("user",req.user.user).cookie("token",req.user.token).redirect("/")
     }
 })
 router.get('/google',passport.authenticate('google',{
     scope: ['profile','email']
 }))
 router.get('/google/redirect',passport.authenticate('google',{
-    successRedirect: "http://localhost:8000/api/v1/auth/login/success",
-    failureRedirect: "http://localhost:8000/login"
+    successRedirect: "/api/v1/auth/login/success",
+    failureRedirect: "/login"
 }),(req,res)=>{
     res.status(200).json(req.user)
 })
