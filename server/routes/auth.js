@@ -15,7 +15,7 @@ router.post('/login',login)
 
 router.get("/login/success",(req,res) => {
     if(req.user) {
-        res.status(200).cookie("user",req.user.user).cookie("token",req.user.token).redirect("http://localhost:3000/")
+        res.status(200).cookie("user",req.user.user).cookie("token",req.user.token).redirect("http://localhost:8000/")
     }
 })
 router.get('/google',passport.authenticate('google',{
@@ -23,7 +23,7 @@ router.get('/google',passport.authenticate('google',{
 }))
 router.get('/google/redirect',passport.authenticate('google',{
     successRedirect: "http://localhost:8000/api/v1/auth/login/success",
-    failureRedirect: "http://localhost:3000/login"
+    failureRedirect: "http://localhost:8000/login"
 }),(req,res)=>{
     res.status(200).json(req.user)
 })

@@ -6,6 +6,7 @@ const session = require('cookie-session')
 const passportSetup = require('./helpers/passport-setup')
 const morgan = require('morgan')
 const cors = require('cors')
+const path = require("path");
 
 // import routes
 const auth = require('./routes/auth');
@@ -21,7 +22,7 @@ const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:8000",
     methods: "GET,POST,PUT,PATCH,DELETE",
     credentials: true,
 }))
@@ -29,9 +30,9 @@ app.use(express.json())
 app.use(express.urlencoded());
 app.use(morgan('dev'))
 
-app.get('/',(req,res)=> {
-    res.status(200).json({msg: "Welcome!"})
-})
+// app.get('/',(req,res)=> {
+//     res.status(200).json({msg: "Welcome!"})
+// })
 
 
 app.use(session({
@@ -56,7 +57,18 @@ app.get('/api/v1/razorpay-key',(req,res) => {
     res.status(200).json({key: process.env.RAZORPAY_API_KEY})
 })
 
+// build
+const __currDirname = path.resolve();
+app.use(express.static(path.join(__currDirname, "./client/build")));
 
+app.get("*", (_, res) => {
+  res.sendFile(
+    path.join(__currDirname, "./client/build/index.html"),
+    (err) => {
+      res.status(500).send(err);
+    }
+  );
+});
 
 
 

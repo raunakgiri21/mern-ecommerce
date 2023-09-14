@@ -45,7 +45,7 @@ const paymentVerification = async(req,res) => {
 
         if(expectedSignature === razorpay_signature) {
             const updateOrder = await Order.findOneAndUpdate({razorpay_order_id},{success: true},{new: true})
-            res.status(200).redirect('http://localhost:3000/dashboard/user/orders')
+            res.status(200).redirect('http://localhost:8000/dashboard/user/orders')
         }
         else {
             res.status(200).json({success: false})
